@@ -16,6 +16,7 @@ package nu.pettson.bluetoothtoggler;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bluetoothIs = (TextView) findViewById(R.id.bluetoothIs);
         setBluetoothText();
     }
 
@@ -63,13 +65,16 @@ public class MainActivity extends Activity {
 
     public boolean setBluetooth(boolean enable) {
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        boolean isEnabled = bluetoothAdapter.isEnabled();
-        if (enable && !isEnabled) {
-            return bluetoothAdapter.enable();
+        if (bluetoothAdapter != null) {
+            boolean isEnabled = bluetoothAdapter.isEnabled();
+            if (enable && !isEnabled) {
+                return bluetoothAdapter.enable();
+            }
+            else if(!enable && isEnabled) {
+                return bluetoothAdapter.disable();
+            }
         }
-        else if(!enable && isEnabled) {
-            return bluetoothAdapter.disable();
-        }
+
         // No need to change bluetooth state
         return true;
     }
