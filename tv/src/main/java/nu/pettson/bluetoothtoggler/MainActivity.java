@@ -16,7 +16,6 @@ package nu.pettson.bluetoothtoggler;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -43,6 +42,10 @@ public class MainActivity extends Activity {
 
     public void clickBluetoothOff(View v) {
         setBluetooth(false);
+        setBluetoothText();
+    }
+
+    public void clickStatus(View v) {
         setBluetoothText();
     }
 
@@ -74,7 +77,6 @@ public class MainActivity extends Activity {
                 return bluetoothAdapter.disable();
             }
         }
-
         // No need to change bluetooth state
         return true;
     }

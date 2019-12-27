@@ -20,6 +20,13 @@
         android:onClick="clickBluetoothOff"
         android:text="OFF" />
 
+    <Button
+        android:id="@+id/statusButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="clickStatus"
+        android:text="Status" />
+
     <TextView
         android:id="@+id/bluetoothIs"
         android:layout_width="match_parent"
